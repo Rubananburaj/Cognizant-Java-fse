@@ -1,0 +1,174 @@
+design principles and patterns
+-----------------------------
+singleton implementation
+--------------------------
+
+// Singleton class
+public class Singleton {
+    // Step 1: Create a private static instance of the class
+    private static Singleton instance;
+
+    // Step 2: Make the constructor private so other classes can't instantiate it
+    private Singleton() {
+        System.out.println("Singleton instance created");
+    }
+
+    // Step 3: Provide a public method to get the instance
+    public static Singleton getInstance() {
+        if (instance == null) {
+            instance = new Singleton(); // lazy initialization
+        }
+        return instance;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Singleton obj1 = Singleton.getInstance();
+        Singleton obj2 = Singleton.getInstance();
+
+        // Check if both references point to the same object
+        System.out.println(obj1 == obj2); // Output: true
+    }
+}
+
+factory method pattern
+----------------------
+// Product
+interface Shape {
+    void draw();
+}
+
+// Concrete Products
+class Circle implements Shape {
+    public void draw() {
+        System.out.println("Drawing a Circle");
+    }
+}
+
+class Square implements Shape {
+    public void draw() {
+        System.out.println("Drawing a Square");
+    }
+}
+
+// Factory
+class ShapeFactory {
+    public static Shape getShape(String type) {
+        if (type.equalsIgnoreCase("circle")) {
+            return new Circle();
+        } else if (type.equalsIgnoreCase("square")) {
+            return new Square();
+        }
+        return null;
+    }
+}
+
+// Client Code
+public class Main {
+    public static void main(String[] args) {
+        Shape shape1 = ShapeFactory.getShape("circle");
+        shape1.draw();
+
+        Shape shape2 = ShapeFactory.getShape("square");
+        shape2.draw();
+    }
+}
+
+
+
+
+
+data structure and algorithm
+------------------------------
+E-commerce platform search function
+------------------------------------
+
+import java.util.*;
+
+class ProductSearchEngine {
+    private Map<String, String> products; // productId -> productName
+
+    public ProductSearchEngine() {
+        products = new HashMap<>();
+    }
+
+    // Add a product
+    public void addProduct(String productId, String productName) {
+        products.put(productId, productName);
+    }
+
+    // Search for products containing the keyword (case-insensitive)
+    public List<String> search(String keyword) {
+        List<String> results = new ArrayList<>();
+        String lowerKeyword = keyword.toLowerCase();
+
+        for (Map.Entry<String, String> entry : products.entrySet()) {
+            String productName = entry.getValue();
+            if (productName.toLowerCase().contains(lowerKeyword)) {
+                results.add(productName);
+            }
+        }
+        return results;
+    }
+
+    // Demo
+    public static void main(String[] args) {
+        ProductSearchEngine searchEngine = new ProductSearchEngine();
+
+        searchEngine.addProduct("P101", "Shoes");
+        searchEngine.addProduct("P102", "Shampoo");
+        searchEngine.addProduct("P103", "Shorts");
+        searchEngine.addProduct("P104", "Shirt");
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter search keyword: ");
+        String input = scanner.nextLine();
+
+        List<String> results = searchEngine.search(input);
+        if (results.isEmpty()) {
+            System.out.println("No products found.");
+        } else {
+            System.out.println("Search Results:");
+            for (String product : results) {
+                System.out.println("- " + product);
+            }
+        }
+        scanner.close();
+    }
+}
+
+financial forecast 
+---------------------
+import java.util.*;
+
+public class FinancialForecast {
+
+    public static double forecastRevenue(List<Double> pastRevenues, int monthsAhead) {
+        int n = pastRevenues.size();
+        double sumX = 0, sumY = 0, sumXY = 0, sumXX = 0;
+
+        for (int i = 0; i < n; i++) {
+            double x = i + 1;
+            double y = pastRevenues.get(i);
+            sumX += x;
+            sumY += y;
+            sumXY += x * y;
+            sumXX += x * x;
+        }
+
+        double slope = (n * sumXY - sumX * sumY) / (n * sumXX - sumX * sumX);
+        double intercept = (sumY - slope * sumX) / n;
+
+        double futureMonth = n + monthsAhead;
+        return slope * futureMonth + intercept;
+    }
+
+    public static void main(String[] args) {
+        List<Double> pastRevenues = Arrays.asList(10000.0, 12000.0, 13500.0, 15000.0, 16000.0);
+        int forecastMonths = 3;
+
+        double predictedRevenue = forecastRevenue(pastRevenues, forecastMonths);
+        System.out.printf("Forecasted revenue for month %d ahead: ₹%.2f%n", forecastMonths, predictedRevenue);
+    }
+}
