@@ -1,0 +1,39 @@
+control structure
+-------------------
+
+DECLARE
+    score NUMBER := 85; -- You can change this value to test other cases
+    grade CHAR(1);
+BEGIN
+    IF score >= 90 THEN
+        grade := 'A';
+    ELSIF score >= 80 THEN
+        grade := 'B';
+    ELSIF score >= 70 THEN
+        grade := 'C';
+    ELSIF score >= 60 THEN
+        grade := 'D';
+    ELSE
+        grade := 'F';
+    END IF;
+
+    DBMS_OUTPUT.PUT_LINE('Score: ' || score || ' - Grade: ' || grade);
+END;
+
+stored procedure 
+------------------
+CREATE OR REPLACE PROCEDURE CALCULATE_AREA (
+    radius IN NUMBER
+)
+IS
+    area NUMBER;
+BEGIN
+    area := 3.14159 * radius * radius;
+    DBMS_OUTPUT.PUT_LINE('Radius: ' || radius || ' - Area: ' || area);
+END;
+/
+
+BEGIN
+    CALCULATE_AREA(5); -- Replace 5 with any radius
+END;
+/

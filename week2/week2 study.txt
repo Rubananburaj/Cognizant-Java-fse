@@ -1,0 +1,420 @@
+what is pl/sql?
+PL/SQL stands for Procedural Language extensions to SQL, and it’s Oracle’s specialized programming language designed to work seamlessly with SQL.
+Think of it as SQL’s more capable cousin. While SQL is great for querying and manipulating data, PL/SQL adds in programming constructs like variables, loops, conditional statements (IF, WHILE, FOR), and exception handling. That means you can write full programs to process data right inside your Oracle database.
+It’s commonly used to write:
+- Stored procedures and functions
+- Triggers that automatically run when certain database events occur
+- Packages that bundle related procedures together
+- Scripts to perform complex batch operations
+
+
+structure  
+----------
+Typically, each block performs a logical action in the program. A block has the following structure:
+
+DECLARE
+    declaration statements;
+
+BEGIN
+    executable statements
+
+EXCEPTIONS
+    exception handling statements
+
+END;
+
+
+
+2. Displaying Output in PL/SQL
+The outputs are displayed by using DBMS_OUTPUT which is a built-in package that enables the user to display output, debugging information, and send messages from PL/SQL blocks, subprograms, packages, and triggers. Let us see an example to see how to display a message using PL/SQL : 
+
+Example: Displaying Output
+
+SQL> SET SERVEROUTPUT ON;
+SQL> DECLARE
+     var varchar2(40) := 'I love GeeksForGeeks' ;
+ 
+  BEGIN
+     dbms_output.put_line(var);###In PL/SQL,(PUT_LINE) a procedure(FUNCTION) is a named block of code that performs a specific task—kind of like a mini-program you can call whenever you need it. 			It’s stored in the database and can be reused, which makes your code cleaner and more modular.
+
+ 
+  END;
+  /
+Output:
+
+I love GeeksForGeeks
+
+PL/SQL Introduction
+Last Updated : 29 Apr, 2025
+PL/SQL (Procedural Language/Structured Query Language) is a block-structured language developed by Oracle that allows developers to combine the power of SQL with procedural programming constructs. The PL/SQL language enables efficient data manipulation and control-flow logic, all within the Oracle Database.
+
+In this article, we’ll cover PL/SQL basics, including its core features, PL/SQL block structure, and practical examples that demonstrate the power of PL/SQL. We’ll also explore the differences between SQL and PL/SQL, how variables and identifiers work, and how the PL/SQL execution environment operates within Oracle.
+
+What is PL/SQL?
+PL/SQL is a combination of SQL and procedural programming constructs, enabling developers to write code that performs database operations efficiently. It was developed by Oracle to enhance SQL’s capabilities and allow for advanced error handling, complex calculations, and programmatic control over database operations.
+
+PL/SQL allows developers to:
+
+Execute SQL queries and DML commands inside procedural blocks.
+Define variables and perform complex calculations.
+Create reusable program units, such as procedures, functions, and triggers.
+Handle exceptions, ensuring the program runs smoothly even when errors occur
+Key Features of PL/SQL
+PL/SQL brings the benefits of procedural programming to the relational database world. Some of the most important features of PL/SQL include:
+
+1. Block Structure: PL/SQL can execute a number of queries in one block using single command.
+
+2. Procedural Constructs: One can create a PL/SQL unit such as procedures, functions, packages, triggers, and types, which are stored in the database for reuse by applications.
+
+3. Error Handling: PL/SQL provides a feature to handle the exception which occurs in PL/SQL block known as exception handling block.
+
+4. Reusable Code: Create stored procedures, functions, triggers, and packages, which can be executed repeatedly.
+
+5. Performance: Reduces network traffic by executing multiple SQL statements within a single block
+
+Differences Between SQL and PL/SQL
+Feature
+
+SQL	PL/SQL
+Purpose
+
+SQL is a single query that is used to perform DML and DDL operations.	PL/SQL is a block of codes that used to write the entire program blocks/ procedure/ function, etc.
+Nature
+
+It is declarative, that defines what needs to be done, rather than how things need to be done.	PL/SQL is procedural that defines how the things needs to be done.
+Execution
+
+Executes single statement.	Executes block of code
+Use Case
+
+Data retrieval, manipulation and definition( eg. SELECT, INSERT, UPDATE)	Mainly used to create an application.
+Syntax
+
+SQL statements only	SQL Statements combined with procedural logic
+Data Handling
+
+Performs actions directly on the database.
+
+Can contain SQL inside its blocks and is used for more control over data handling
+
+Structure of PL/SQL Block
+PL/SQL extends SQL by adding constructs found in procedural languages, resulting in a structural language that is more powerful than SQL. The basic unit in PL/SQL is a block. All PL/SQL programs are made up of blocks, which can be nested within each other. 
+
+Typically, each block performs a logical action in the program. A block has the following structure:
+
+DECLARE
+    declaration statements;
+
+BEGIN
+    executable statements
+
+EXCEPTIONS
+    exception handling statements
+
+END;
+PL/SQL code is written in blocks, which consist of three main sections:
+
+Declare section starts with DECLARE keyword in which variables, constants, records as cursors can be declared which stores data temporarily. It basically consists definition of PL/SQL identifiers. This part of the code is optional.
+Execution section starts with BEGIN and ends with END keyword.This is a mandatory section and here the program logic is written to perform any task like loops and conditional statements. It supports all DML commands, DDL commands and SQL*PLUS built-in functions as well.
+Exception section starts with EXCEPTION keyword.This section is optional which contains statements that are executed when a run-time error occurs. Any exceptions can be handled in this section.
+PL/SQL Identifiers
+In PL/SQL, identifiers are names used to represent various program elements like variables, constants, procedures, cursors, triggers etc. These identifiers allow you to store, manipulate, and access data throughout your PL/SQL code.
+
+1. Variables in PL/SQL
+Like several other programming languages, variables in PL/SQL must be declared prior to its use. A variable is like a container that holds data during program execution. Each variable must have a valid name and a specific data type.
+
+Syntax for declaration of variables:
+
+variable_name datatype [NOT NULL := value ];
+
+variable_name: The name of the variable.
+datatype: The data type of the variable (e.g., INTEGER, VARCHAR2).
+NOT NULL: This optional constraint means the variable cannot be left empty.
+:= value: This optional assignment assigns an initial value to the variable.
+Example: Declaring Variables
+SQL> SET SERVEROUTPUT ON;
+ 
+SQL> DECLARE
+    var1 INTEGER;
+    var2 REAL;
+    var3 varchar2(20) ;
+ 
+BEGIN
+    null;
+END;
+/
+Output:
+
+PL/SQL procedure successfully completed.
+Explanation:
+
+SET SERVEROUTPUT ON: It is used to display the buffer used by the dbms_output.
+var1 INTEGER : It is the declaration of variable, named var1 which is of integer type. There are many other data types that can be used like float, int, real, smallint, long etc. It also supports variables used in SQL as well like NUMBER(prec, scale), varchar, varchar2 etc.
+Slash (/) after END;: The slash (/) tells the SQL*Plus to execute the block.
+Assignment operator (:=) : It is used to assign a value to a variable.
+2. Displaying Output in PL/SQL
+The outputs are displayed by using DBMS_OUTPUT which is a built-in package that enables the user to display output, debugging information, and send messages from PL/SQL blocks, subprograms, packages, and triggers. Let us see an example to see how to display a message using PL/SQL : 
+
+Example: Displaying Output
+
+SQL> SET SERVEROUTPUT ON;
+SQL> DECLARE
+     var varchar2(40) := 'I love GeeksForGeeks' ;
+ 
+  BEGIN
+     dbms_output.put_line(var);
+ 
+  END;
+  /
+Output:
+
+I love GeeksForGeeks
+
+
+
+
+3. Comments in PL/SQL
+Like in many other programming languages, in PL/SQL also, comments can be put within the code which has no effect in the code. There are two syntaxes to create comments in PL/SQL :
+
+Single Line Comment: To create a single line comment , the symbol - - is used.
+Multi Line Comment: To create comments that span over several lines, the symbol /* and */ is used.
+Example: Adding Comments
+-- This is a single-line comment
+
+/*
+  This is a multi-line comment
+  that spans over multiple lines.
+*/
+Types of Blocks in PL/SQL
+The PL/SQL block structures are broadly classified into two type which are namely:
+
+Anonymous Blocks: This are the blocks which do not have any name associated with the block. The most disadvantage of the PL/ SQL anonymous blocks is that this block can be used only once as they are not stored anywhere in the oracle database.
+Named Blocks: This are generally the procedures and functions which can be executed and used again. This are reusable block structures in PL/SQL. Along with the name of the procedure, we can also optionally specify the list of parameters used for input. Each of the individual parameter declared inside the parenthesis can be either OUT/ IN or INOUT parameter. This are called as the modes of parameters. This mode helps us to specify whether the parameter that we have created is used for writing to or reading from the procedure.
+
+
+for loop
+----------------
+FOR counter_variable IN [REVERSE] lower_bound..upper_bound LOOP
+   -- statements
+END LOOP;
+
+example
+
+DECLARE
+BEGIN
+   FOR i IN 1..5 LOOP
+      DBMS_OUTPUT.PUT_LINE('Value of i: ' || i);
+   END LOOP;
+END;
+
+while loop
+------------
+WHILE condition LOOP
+   -- statements to execute
+END LOOP;
+
+example
+------
+DECLARE
+   counter NUMBER := 5;
+BEGIN
+   WHILE counter > 0 LOOP
+      DBMS_OUTPUT.PUT_LINE('Countdown: ' || counter);
+      counter := counter - 1;
+   END LOOP;
+END;
+
+
+collections(nested tables, varray, associative array)
+--------------------------------------
+In PL/SQL, a collection is a type of data structure that allows you to group and manage multiple elements—like an array or list in other programming languages. Each element in a collection has the same data type and is accessed using a unique index.
+
+A collection that can be stored in database columns and manipulated like a table.
+
+There are three main types of collections in PL/SQL:
+
+Associative Arrays (Index-by Tables)
+----------------------------
+ -- same as dictionary key value pairs no indexing
+ 
+
+-Nested Tables
+----------------
+- Unbounded and can be stored in database columns
+- Initially dense but can become sparse (i.e., have gaps in the index)
+- Useful when you need to store a collection in a table column
+  syntax
+	TYPE name_list[name ]IS TABLE OF VARCHAR2(50)[datatype];
+	names name_list := name_list();
+
+  accessing 
+  ---------
+   same as varrays 
+    name(index from 1)
+
+ VARRAYs (Variable-Size Arrays)
+-----------------------------
+- index from start from 1
+  similar to normal array fixed size and continuous allocation
+
+ syntax
+TYPE grade_array(name ) IS VARRAY(5) OF NUMBER(any type);
+grades grade_array := grade_array(85, 90, 78);
+
+for accessing
+ grades(i=1 to n)
+
+ex
+DECLARE 
+   type namesarray IS VARRAY(5) OF VARCHAR2(10); 
+   type grades IS VARRAY(5) OF INTEGER; 
+   names namesarray; 
+   marks grades; 
+   total integer; 
+BEGIN 
+   names := namesarray('Kavita', 'Pritam', 'Ayan', 'Rishav', 'Aziz'); 
+   marks:= grades(98, 97, 78, 87, 92); 
+   total := names.count; 
+   dbms_output.put_line('Total '|| total || ' Students'); 
+   FOR i in 1 .. total LOOP 
+      dbms_output.put_line('Student: ' || names(i) || ' 
+      Marks: ' || marks(i)); 
+   END LOOP; 
+END; 
+/
+
+procedures (functions that perform particular task)
+----------
+syntax
+-------
+ CREATE [OR REPLACE] PROCEDURE procedure_name 
+  [(parameter_name [IN | OUT | IN OUT] type [, ...])] 
+  {IS | AS} 
+  BEGIN 
+  < procedure_body > 
+  END procedure_name; 
+
+see the given   https://www.tutorialspoint.com/plsql/plsql_procedures.htm
+
+function
+----------
+
+A standalone function is created using the CREATE FUNCTION statement. The simplified syntax for the CREATE OR REPLACE PROCEDURE statement is as follows −
+
+syntax
+-------
+    CREATE [OR REPLACE] FUNCTION function_name 
+    [(parameter_name [IN | OUT | IN OUT] type [, ...])] 
+    RETURN return_datatype 
+    {IS | AS} 
+    BEGIN 
+   < function_body > 
+   END [function_name];
+------------------------------
+	cursor
+
+ 	a cursor is a pointer that allows you to fetch and process rows returned by a SQL query, one at a time.
+ Think of it as a control structure that enables row-by-row processing of result sets.
+
+types :
+implicit (defined by the automatically)and explicit(defined by the user)
+
+syntax
+
+DECLARE
+  CURSOR cursor_name IS
+    SELECT_statement;
+
+  variable_name table_name.column_name%TYPE;
+
+BEGIN
+  OPEN cursor_name;
+  LOOP
+    FETCH cursor_name INTO variable_name;
+    EXIT WHEN cursor_name%NOTFOUND;
+
+    -- Do something with variable_name here
+    DBMS_OUTPUT.PUT_LINE(variable_name);
+
+  END LOOP;
+  CLOSE cursor_name;
+END;
+---------
+example
+--
+DECLARE 
+   c_id customers.id%type; 
+   c_name customers.name%type; 
+   c_addr customers.address%type; 
+   CURSOR c_customers is 
+      SELECT id, name, address FROM customers; 
+BEGIN 
+   OPEN c_customers; 
+   LOOP 
+   FETCH c_customers into c_id, c_name, c_addr; 
+      EXIT WHEN c_customers%notfound; 
+      dbms_output.put_line(c_id || ' ' || c_name || ' ' || c_addr); 
+   END LOOP; 
+   CLOSE c_customers; 
+END; 
+/
+-------------------
+exceptinon handling
+
+ syntax
+------------
+
+DECLARE 
+   <declarations section> 
+BEGIN 
+   <executable command(s)> 
+EXCEPTION 
+   <exception handling goes here > 
+   WHEN exception1 THEN  
+      exception1-handling-statements  
+   WHEN exception2  THEN  
+      exception2-handling-statements  
+   WHEN exception3 THEN  
+      exception3-handling-statements 
+   ........ 
+   WHEN others THEN 
+      exception3-handling-statements 
+END;
+------
+explicit  exception
+
+ syntax
+--------
+   
+DECLARE 
+   my-exception EXCEPTION; 
+
+example
+---------------
+DECLARE 
+   c_id customers.id%type := &cc_id; 
+   c_name customerS.Name%type; 
+   c_addr customers.address%type;  
+   -- user defined exception 
+   ex_invalid_id  EXCEPTION; 
+BEGIN 
+   IF c_id <= 0 THEN 
+      RAISE ex_invalid_id; 
+   ELSE 
+      SELECT  name, address INTO  c_name, c_addr 
+      FROM customers 
+      WHERE id = c_id;
+      DBMS_OUTPUT.PUT_LINE ('Name: '||  c_name);  
+      DBMS_OUTPUT.PUT_LINE ('Address: ' || c_addr); 
+   END IF; 
+
+EXCEPTION 
+   WHEN ex_invalid_id THEN 
+      dbms_output.put_line('ID must be greater than zero!'); 
+   WHEN no_data_found THEN 
+      dbms_output.put_line('No such customer!'); 
+   WHEN others THEN 
+      dbms_output.put_line('Error!');  
+END; 
+/
+
