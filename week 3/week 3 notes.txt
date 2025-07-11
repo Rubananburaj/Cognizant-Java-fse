@@ -1,0 +1,138 @@
+dependency 
+--------------
+“Dependencies are external libraries or modules that an application relies on to perform specific tasks or provide certain functionality. These can include frameworks like Spring, logging libraries like Log4j, database drivers, or utility libraries like Apache Commons. Managing dependencies ensures that the application has all the required components to compile, run, and behave as expected.”
+
+These depencies are automatically handled by
+
+| Tool         | Role in Dependency Management                                                                 |
+|--------------|-----------------------------------------------------------------------------------------------|
+| Maven        | Uses a `pom.xml` file to declare dependencies. It downloads them from repositories like Maven Central and manages versions, scopes, and transitive dependencies. |
+| Gradle       | Uses a `build.gradle` file (Groovy or Kotlin DSL) to declare dependencies. It’s more flexible and faster than Maven in many cases. |
+| Spring Boot  | Internally uses Maven or Gradle, but simplifies dependency management with “starter” dependencies (like `spring-boot-starter-web`). |
+
+dependency injection 
+_-------------------
+it Is the process of creating a object automatically by spring 
+
+autowiring 
+---------
+autowiring is the  process of connecting multiple classes automatically using annotation @ autowiring
+
+tight coupling 
+--------------
+- Classes are strongly dependent on each other.
+
+loose coupling 
+---------------
+opposite of strong coupling and it is achieved in spring by interface
+
+
+JAVA SPRING( spring boot is  the advanced version of spring framework)
+--------------
+used for handling the server side (that is backend )
+
+spring or spring boot can return html pages (that is views ) and json and xml data  
+but  spring rest is a framework only return json or xml data
+
+| Layer           | Annotation     | Responsibility                        | Example                                |
+|----------------|----------------|----------------------------------------|----------------------------------------|
+| Controller      | @Controller    | Handle HTTP requests                   | OrderController                         |
+| Business Logic  | @Service       | Apply rules, coordinate operations     | OrderService                            |
+| Data Access     | @Repository    | Interact with the database             | OrderRepository                         |
+
+Annotations in spring  and spring boot
+-----------------------------------------------
+@component  --- tell the spring that the class will act as a bean(object ) class
+@ bean       -------  this is used inside the class with @ component  , and @bean is used in the method that the method is creating a object 
+
+so all the above two steps are done by the developer and tell the spring to manage it
+
+@component -------  is used in spring boot to tell the spring boot to create a bean for the class and manage it automatically
+
+below is the example for difference 
+
+Example Using @Component
+@Component
+public class Item {
+    private String name = "Pen";
+    private int price = 10;
+
+    // constructors, getters, setters
+}
+
+
+@Component
+public class Store {
+    private final Item item;
+
+    @Autowired
+    public Store(Item item) {
+        this.item = item;
+    }
+
+    // getters, business logic
+}
+
+
+🛠️ How This Works:
+- Spring scans the package, finds both Item and Store because they’re annotated with @Component.
+- It automatically wires Item into Store using @Autowired.
+- No need for any manual bean creation—you just annotate and let Spring handle the instantiation 🔄
+
+🏗️ Example Using @Configuration + @Bean
+@Configuration
+public class StoreConfig {
+
+    @Bean
+    public Item item() {
+        return new Item("Pen", 10);
+    }
+
+    @Bean
+    public Store store() {
+        return new Store(item());  // manual wiring
+    }
+}
+
+
+🛠️ How This Works:
+- You explicitly define how each bean is created using methods.
+- Spring runs these methods during startup and registers Item and Store as beans.
+- You control how objects are built—for example, calling constructors, setting fields, and handling any pre-processing.
+
+⚖️ Key Differences Recap
+| Feature | @Component Approach | @Configuration + @Bean Approach | 
+| Bean Creation | Automatic via scanning | Manual via factory methods | 
+| Custom Instantiation Logic | Harder to inject dynamic values | Easy to write custom logic or conditions | 
+| Ideal For | Simple POJOs and service layers | Complex setups or external libraries | 
+| Wiring Dependencies | Via @Autowired | Via method calls or parameters | 
+
+
+-----------------------------------
+what is mean by stereotype annotattoin?
+ans
+
+| Layer           | Annotation     | Responsibility                        | Example                                |
+|----------------|----------------|----------------------------------------|----------------------------------------|
+| Controller      | @Controller    | Handle HTTP requests                   | OrderController                         |
+| Business Logic  | @Service       | Apply rules, coordinate operations     | OrderService                            |
+| Data Access     | @Repository    | Interact with the database             | OrderRepository                         |
+
+
+----------------------
+what is Aspect oriented programming (AOP)J?
+
+AOP allows you to inject behavior (like logging or security checks) into your code without modifying the actual business logic. It’s like saying: “Before this method runs, do this extra thing,” or “If this method throws an error, log it.”
+
+see  https://www.geeksforgeeks.org/advance-java/aspect-oriented-programming-aop-in-spring-framework/
+youtube -- https://www.youtube.com/watch?v=DuFPj8MlAVo
+----------------------------------------------------
+
+spring mvc controller ?
+
+https://www.geeksforgeeks.org/springboot/spring-mvc-framework/
+
+youtube --- https://www.youtube.com/watch?v=BkRZfxznaOo
+
+
+
