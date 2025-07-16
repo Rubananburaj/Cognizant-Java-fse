@@ -1,0 +1,197 @@
+ORM (object relational mapping )
+---------------------------------
+it is used in database and repository layer 
+ORM in Java stands for Object-Relational Mapping, and it's a technique that bridges the gap between object-oriented programming and relational databases.
+🧠 What It Does
+ORM lets you work with Java objects instead of writing raw SQL queries. It automatically maps:
+- Java classes(entity) → Database tables
+- Java fields(variables) → Table columns
+- Java objects → Table rows
+So instead of manually converting between Java objects and database records, the ORM framework handles it for you.
+
+hibernate is a tool used to achieve ORM
+
+
+----------------------------
+JPA (JAVA PERSISTENT API)
+
+is  a standard or guidliness or specification that is used to ACHIEVE  ORM
+
+HIBERNATE , TOPLINK  IS A TOOL TO ACHIEVE ORM
+
+Cascade Types in Hibernate
+In Hibernate, Cascade Types mean how the data should be kept between the two related entities. There are set of pre defined types.
+
+CascadeType.PERSIST : Both save() or persist() operations cascade to related entities.
+CascadeType.MERGE : Related entities are merged when the ownership entity is merged.
+CascadeType.REFRESH : Does same thing for the refresh() operation.
+CascadeType.REMOVE : Removes all related entities association with this setting when the ownership entity is deleted.
+CascadeType.DETACH : Detaches all related entities if a “manual detach” occurs.
+CascadeType.ALL : All of the above cascade operations.
+
+In Spring Data JPA, a repository is a high-level abstraction that allows you to perform CRUD operations (Create, Read, Update, Delete) and custom queries on your database without writing boilerplate SQL(standard sql code ) or JPA code. It provides a powerful and flexible way to access and manipulate data using interfaces.
+
+
+Creating JPA Entity :
+This is the very first step, We are going to create one simple Entity class UserEntity.
+
+package com.exampleJpa;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity                           // jpa consider the class only when use the @ entity 
+@Table(name = "user_details")    
+public class UserEntity {
+    @Id        
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id; // act as primary key
+
+    @Column(name = "user_name")
+    private String userName;
+
+    @Column(name = "user_address")
+    private String userAddress;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getUserAddress() {
+        return userAddress;
+    }
+
+    public void setUserAddress(String userAddress) {
+        this.userAddress = userAddress;
+    }
+}
+We have used a few annotations here to create our entity class, let's learn about them.
+
+Entity: This annotation specifies that the class is an entity and that the class can be mapped to the database table.
+
+Table: This annotation allows you to specify details about the table, as in this example we have mentioned the table name, using parameter name along with table annotation.
+
+Column: This annotation allows to specify properties of the database column.
+
+Id: Indicates that the member field below is the primary key of the entity.
+@GeneratedValue(strategy = GenerationType.IDENTITY) --- tells the database to assign  the values (that is autoincrement is used by db ) to increase the value
+
+@bean is used to create object explicitly by the developer and tell the spring to manage it  but
+@component tells the spring to create the object by itself and manage it
+
+------------------------------------
+CRUD OPERATION WITH SPRING JPA
+
+  like controller and service annotation 
+  we will see about repository annotation
+
+TO CREATE A REPOSTORYLAYER IN SPRING
+
+	package com.exampleJpa;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+
+SYNTAX
+------
+@Repository
+public interface class name  extends  JpaRepository<class name that extends  , data type>
+
+Example
+--------
+@Repository
+public interface UserRepository extends JpaRepository<UserEntity, Long> {      
+}
+
+----------------------------
+JPA QUERY OPERATIONS
+
+https://docs.spring.io/spring-data/jpa/reference/jpa/query-methods.html
+
+----------------------------
+JPA PAGINATION AND SORTING 
+
+PAGINATION
+---------------
+Purpose: To fetch data in chunks instead of loading everything at once — super helpful for large datasets.
+🔹 How it works:
+Spring uses the Pageable interface to represent pagination info:
+
+Pageable pageable = PageRequest.of(pageNumber, pageSize);
+
+- pageNumber: starts from 0, not 1.
+- pageSize: number of records per page.(No of rows in each page)
+
+pagination can be done by  Using the Page and Pageable interfaces
+SORTING
+-------
+Similarly, to just have our query results sorted, we can simply pass an instance of Sort to the method:
+
+Page<Product> allProductsSortedByName = productRepository.findAll(Sort.by("name"));
+Copy
+However, what if we want to both sort and page our data?
+
+We can do that by passing the sorting details into our PageRequest object itself:
+
+Pageable sortedByName = 
+  PageRequest.of(0, 3, Sort.by("name"));
+
+Pageable sortedByPriceDesc = 
+  PageRequest.of(0, 3, Sort.by("price").descending());
+
+Pageable sortedByPriceDescNameAsc = 
+  PageRequest.of(0, 5, Sort.by("price").descending().and(Sort.by("name")));
+Copy
+Based on our sorting requirements, we can specify the sort fields and the sort direction while creating our PageRequest instance.
+
+As usual, we can then pass this Pageable type instance to the repository’s method.
+----------------------------------------------------------
+AUDITING IN SPRING
+
+Auditing refers to automatically capturing metadata about entity changes, such as:
+- Who created the record (@CreatedBy)
+- When it was created (@CreatedDate)
+- Who last modified it (@LastModifiedBy)
+- When it was last modified (@LastModifiedDate)
+This is handled by Spring Data JPA’s auditing feature, which plugs into your entity lifecycle.
+-------------------------------------------------------------------------
+
+understand the difference between jpa ,spring jpa and hibernate 
+
+https://youtu.be/4Py9RTVWyvE?si=iKpQkrxmfAPlG_oW
+------------------------------------------------------
+PROJECTION
+
+	 it is closely related with paging and sorting 
+	 it is used to retrieve selected entity (columns ) after using paging (that return the no of rows )
+
+		https://docs.spring.io/spring-data/jpa/reference/repositories/projections.html
+----------------------------------------------------------------------
+
+HIBERNATE 
+-------
+session is a interface that Is used to interact with the database
+
+sessionfactory is used to create session object since session is a interface it cant create object 
+
+it creates cache that avoids the frequent access of database everytime .
+instead it access caches to retrieve the required data this is called first cache
+
+
+
+
