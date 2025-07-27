@@ -1,0 +1,239 @@
+npm create vite@latest
+ cd reactproject
+  npm install
+  npm run dev
+
+
+
+learn using cra
+------------------------------------------
+
+traditional architecture (Anton Francis Jeejo is the youtube channel for react for beginners)
+------------------------
+when an update is need to performed  or modified in the  html page and send to the server 
+the server creates a new html page by updating all the pages
+
+single page application
+--------------------------------
+
+unlike traditional application architecture  instead of loading the entire new page it loads only the modified component and modify the content and return the same html page.
+
+in single page application client have a lot of code
+------------
+
+react compiler(https://www.geeksforgeeks.org/reactjs/reactjs-jsx-introduction/)
+---------------
+babel is the compiler that is used to convert jsx file to js file because browser understand only html,css ,java script
+- You write JSX in your React components.
+- Babel compiles that JSX into React.createElement() calls.
+- React uses those calls to build the Virtual DOM. using the method (React.createElement() )
+- react dom is used to create container it gets html tag as parameter where the rendering is performed   reactDOM.createRoot() create the contanier wherer the renderig is performed
+
+rendering() perfomrs rendering
+
+
+What Is Unidirectional Data Flow?
+----------------------------------
+React uses one-way data binding, meaning:
+- Data flows from parent to child components via props.but not from child to parent components
+- Child components cannot directly modify the data—they can only request changes via callback functions passed from the parent.
+
+
+What Are React Components?(https://www.w3schools.com/react/react_render.asp)
+------------------------------
+A component is a building block that encapsulates a piece of the user interface (UI). It defines the structure and behavior of the UI, either by managing its own state or by receiving data through props and rendering content accordingly. Components are reusable and can be composed together to build complex UIs in a modular way.
+
+A component  should always return a html tag 
+
+
+
+THERE are two types of react component 
+class and functional component
+
+State in React Components
+----------------------------
+The state is a JavaScript object managed within a component, allowing it to maintain and update its own data over time. Unlike props, state is mutable and controlled entirely by the component
+
+rendering a component
+----------------------
+Rendering a component refers to displaying it on the browser. React components can be rendered using the ReactDOM.render() method or by embedding them inside other components.
+
+Components in Components(NESTED COMPONENTS)
+---------------------------------------------
+In React, you can nest components inside other components to build a modular and hierarchical structure.
+
+Components can be reused multiple times within the same or different components.
+Props can be passed to nested components for dynamic content.
+
+What is Importing and Exporting in React?
+-------------------------------------------
+In React, importing and exporting components refer to the process of sharing and using components across different files in your application. JavaScript's import and export syntax allows you to bring in functions, objects, and components from one file into another, creating a modular and maintainable codebase.
+
+Exporting a component means making it available for use in other files.
+Importing a component means bringing it into another file to use it.
+
+Types of Exports in React
+---------------------------
+In React, there are two types of exports
+
+Default Exports and Imports
+Named Exports and Imports
+
+1. Default Export and Import
+---------------------------
+A default export allows you to export a single component or variable from a file. When importing a default export, you can give it any name you choose.
+
+2. Named Export and Import
+--------------------------
+Named exports allow you to export multiple components or variables from a single file. When importing a named export, you must use the exact name of the exported entity.
+
+
+ES6
+-----
+Definition: ES6 is the ECMA script programming language, the next version after 5 was released in 2015. It is used to create the standards for JavaScript language such that it can bring multiple independent implementations.	
+
+prop (full form properties)
+------------------------------
+prop is used when you want to use a data that is present in one component to another component 
+
+like your mention attributes in html we can use props in components
+
+
+
+java script
+-------------
+arrow function is used to create anonymous function (that is nameless function )is used when you don't need multiple times 
+
+var keyword
+----------------
+If you use var keyword outside of a function, it belongs to the global scope.
+
+If you use var inside of a function, it belongs to that function.
+
+If you use var inside of a block, i.e. a for loop, the variable is still available outside of that block.
+
+
+let variable
+--------------
+let is the block scoped version of var, and is limited to the block (or expression) where it is defined.
+
+If you use let inside of a block, i.e. a for loop, the variable is only available inside of that loop.
+
+
+event handling in react 
+------------------------
+react events are written in camelCase syntax:
+
+onClick instead of onclick.
+
+React event handlers are written inside curly braces:
+
+onClick={shoot}  instead of onclick="shoot()".
+
+React:Get your own React.js Server
+<button onClick={shoot}>Take the Shot!</button>
+HTML:
+<button onclick="shoot()">Take the Shot!</button>
+
+
+-----------------
+
+keys in react 
+---------------
+keys are used to identify the element in a list  and each key should be unique
+react also support index but key is perferrred 
+
+A key serves as a unique identifier in React, helping to track which items in a list have changed, been updated, or removed. It is particularly useful when dynamically creating components or when users modify the list.
+---------------------------------------
+what is hook?
+--------------
+Hooks allow function components to have access to state and other React features. Because of this, class components are generally no longer needed.
+
+we cant use hooks in class based components at the same time we cant use the class component life cycle in functional components
+
+rules
+  ----
+Hooks can only be called inside React function components.
+Hooks can only be called at the top level of a component.
+Hooks cannot be conditional
+Note: Hooks will not work in React class components.
+we can also create a custom hook
+
+useState hook
+-----------------
+it returns a array with value and function inside the array like [variable,function]
+
+useEffectt hook 
+---------------
+it gets a function and a array as a parameter this hook is used for loading new data after an even (example in utube after refresh load new videos)
+
+
+--------------------------------------------------
+react router
+--------------
+it is used to route the component to particular path
+example 
+for https:/localhost/about  
+display the component "about"
+
+for https:/localhost/about  
+display the "home" componenet 
+
+it makes the user thing like there many pages in the website but there is only one page but only the component are changing
+
+it is like for different user request different components will be shown
+
+protected routes 
+------------------
+in some pages we see certain information only when we login in such cases we use protected routes
+
+in summary we use protected routes when a certain operation is performed and then the content arrives
+
+=================================
+API CALL In react
+---------------------
+An API call in React refers to the process of fetching or sending data between your React app and an external service — 
+like a backend server or third-party API — using HTTP requests. It’s how your app talks to the outside world 
+
+fetch(it is a function)
+------
+it is used  to call an api in java script but we can also use this in react
+
+it does not return data in json so we need to call json function while using fetch
+
+axios(it is a library)
+-----
+it is used to call an api in js  but we can also use this in react
+
+it provides more customisation than fetch function
+
+async and await
+------------------
+Async/Await Syntax
+Cleaner and easier to read, works with both Fetch and Axios. it Is used in java script 
+
+Functions running in parallel with other functions are called asynchronous
+
+async call the promise("I Promise a Result!"means that it returns a result)
+await  is waiting for the promise
+
+react query
+------------
+it is used to call an api in js  but we can also use this in react
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
