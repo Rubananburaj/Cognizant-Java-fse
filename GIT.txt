@@ -1,0 +1,216 @@
+there are two types of version control system 
+centralised and distributed
+
+git and mercurial  is a distributed system(https://www.geeksforgeeks.org/git/version-control-systems/)
+Subversion (SVN) is centralised version control system
+
+
+GIT MERGE (https://www.geeksforgeeks.org/git/merge-strategies-in-git/)
+there are multiple merge 
+
+Core Concepts of Git
+Before using Git, it is important to understand some of its core concepts. These concepts will help you get started and make it easier to work with Git in real-world scenarios.
+
+1. Repositories
+A repository (or repo) is a storage space where your project files and their history are kept. There are two types of repositories in Git:
+
+Local Repository: A copy of the project on your local machine.
+Remote Repository: A version of the project hosted on a server, often on platforms like GitHub, GitLab, or Bitbucket.
+2. Commits
+commit is used to save your code in local repo 
+
+To read more about Git Commit Click here 
+
+3. Branches
+Branches allow developers to work on separate tasks without affecting the main codebase. Common branch types include:
+
+Main (or Master) Branch: The stable version of the project, usually production-ready.
+Feature Branch: Used for developing new features or bug fixes.
+4. Merging
+Merging is the process of integrating changes from one branch into another. It allows you to combine the work done in different branches and resolve any conflicts that arise.
+
+5. Cloning
+Cloning a repository means creating a local copy of a remote repository(creating copy of repository from remote to local r). This copy includes all files, branches, and commit history.
+
+To Read more about Git Clone Click here 
+
+6. Pull and Push
+Pull: Fetches updates from the remote repository and integrates them into your local repository.
+Push: Sends your local changes to the remote repository, making them available to others.
+
+
+git init
+--------------
+it is used to create a empty git repo in local machine (your pc)  by default it use master branch
+
+git init -b main
+------------
+it is used to change the branch to main instead of master 
+
+
+git add [file name]
+------------------
+it is used to push the  file  to staging area(it is present between my working folder and local repository)
+
+
+git add .
+------------
+add all the files to the staging area
+	
+
+git status
+---------
+it is used to see the status of the file in local repo
+
+git commit
+---------------
+it moves the file from staging area to local repo
+
+git commit -a
+==============
+it is used to perform both git add and commit
+
+git commit -m " write your message"
+
+git push
+-------------
+to push file from local repo to remote repo
+
+git pull
+------------
+to get file from remote repo to our working directory
+
+git fetch
+---------
+to get file from remote repo to our local repo
+
+
+git log(gives the history of commit)
+---------
+
+commit 0814047765cb540c27e8b5bc56b76e4d059d101b (HEAD -> master)
+Author: Ruban Anburaj <rubananburaj2004@gamil.com>
+Date:   Tue Jul 22 21:26:12 2025 +0530
+
+git diff
+----------
+shows what is the code or text modified  -- use when file is present in my working directory
+
+git diff --staged
+--------------------
+when file is present in staging area
+
+
+git rm --cached [filename]
+----------------------------
+will remove the file from staging area
+ 
+s1
+----
+if the file in local repo 
+use the above command and use the commit command to remove from local repo
+
+if the file in remote repo
+use the s1 steps and use git push command to remove from remote repo
+
+git branch -m old-branch-name new-branch-name
+-----------------------------------------------
+to rename the branch
+
+git remote add origin [https://github.com/username/repo-name.git]
+-----------------------
+to make connection between local and remote repo 
+orgin - is the alias name and can be anything 
+
+
+
+git push [repo name can be anything but should be same as the name mentioned in the  previous command name][branch name]
+--------------------------------------------
+but when you use like that you 
+need to use every time the git push file name and branch name
+
+git push -u [repo name][branch name]
+--------------------------------------
+-u tells the  upstream that whenever I use [repo name ] [file name]  it will push or pull from the particular repo and particular branch 
+so you can only use  git push and git pull instead of doing every steps in the previous command
+
+
+1. Deleting a Branch
+
+
+git branch -d <branch_name>
+---------------------------  To delete a local branch:
+
+
+git branch -D <branch_name>    To force delete a branch
+-----------------------------    
+
+git remote -v
+----------------
+to see the  where the local repo is poiting in the remote repo
+
+git remove [repo name]
+------------------------
+to remove the path from local to remote repo
+
+
+
+================================================
+git branch [branch name]
+=---------------------------
+to create a new branch
+in local repo
+
+git branch [branch name] or git checkout -b [branch name]
+-------------
+shows the  current working brach
+
+ 
+git checkout [branch name] or git switch [branch name]
+--------------
+to navigate to ne branch
+create a new branch if not created
+
+
+
+git checkout -b [branch name]
+------------------------
+create and navigate to the branch
+
+git branch -d [branch name]
+-----------------------
+to delete a branch
+
+
+git merge [from branch] [to branch]
+-----------------------------
+to merge both files 
+The commit history of all branches involved in the merge will be preserved.
+
+git rebase [from branch] [to branch]      (https://youtu.be/z3HRPSw5nm0?si=BrFjYXrd6JGdUHCc)
+-----------------------------------
+rebase also perfrom merge operation but the history of commits is linear and clear
+
+used to merge sequence of commits of two branches
+
+git chery-pick [comit id]
+----------------------------
+it is used to merge particular commit from one branch to another 
+
+git stash
+----------
+is used to hide the file in a separate memory .
+for that the file should be in staging area 
+
+
+git stash pop
+------------
+it is used to remove the file from the  separate  memory
+
+git stash list 
+-------------
+it shows the history of files stashed 
+
+
+
+
