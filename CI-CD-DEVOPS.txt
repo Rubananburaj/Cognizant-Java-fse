@@ -1,0 +1,23 @@
+`DevOps 
+--------
+-is a combination of two words: "Development" and "Operations." It’s a modern approach where software developers and software operations teams work together throughout the entire software life cycle, from planning and coding to testing, deploying, and monitoring.
+
+why use devops
+-------------
+DevOps was created to resolve these issues by making both Development and Operations teams work together in entire software development lifecycle. The following are some reasons why DevOps was needed:
+
+difference between cd(continuous delivery ) and cd (continuous deployment )
+----------------------------
+Feature                         | Continuous Delivery                  | Continuous Deployment                 
+-------------------------------|--------------------------------------|---------------------------------------
+Final release trigger           | Manual or approval-based             | Fully automated                       
+Production deployment frequency | On-demand                            | As often as code passes CI            
+Risk management                 | Human oversight, safer in regulated contexts | Automated recovery strategies needed 
+User impact                     | Controlled feature rollout           | Fast time-to-market                   
+
+
+ANSIBLE is used for configuration management and  is known for its "Infrastructure as Code" capabilities and agentless architecture?
+
+JIRA -
+GRAFANNA - tools is primarily associated with monitoring and visualizing time-series data?
+TERAFORM ---Is used for orchestrating the cloud infrastructure as a code 
