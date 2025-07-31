@@ -1,0 +1,18 @@
+What is Dockerfile?
+The Dockerfile uses DSL (Domain Specific Language) and contains instructions for generating a Docker image. Dockerfile will define the processes to quickly produce an image. While creating your application, you should create a Dockerfile in order since the Docker daemon runs all of the instructions from top to bottom.
+
+docker file is used when you develop a custom image
+
+ Dockerfile is the source code of the image
+
+What is Docker Image?
+An artifact with several layers and a lightweight, compact stand-alone executable package that contains all of the components required to run a piece of software, including the code, a runtime, libraries, environment variables, and configuration files is called a Docker image.
+
+A Docker Image contains everything a container needs to run, including the application code, libraries, dependencies, and the operating system it needs, Here is all you need to know about Docker images
+
+What is Docker Container?
+A container is a runtime instance(like object) of an image. Containers make development and deployment more efficient since they contain all the dependencies and parameters needed for the application it runs completely isolated from the host environment.
+
+
+
+
